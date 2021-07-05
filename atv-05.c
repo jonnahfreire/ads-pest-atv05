@@ -1,9 +1,16 @@
 #include <stdio.h>
 
 
-int main (){
+/*
+    ADS S2 - CAMPUS CANINDÉ
+    DISCIPLINA: PROGRAMAÇÃO ESTRUTURADA
+    PROF: MANOEL LOPES
+    DUPLA: JONAS DE SOUSA FREIRE, JESSYLENE SOARES MACIEL
 
-    // BORA COMEÇAR SA BAGAÇAAA
+    CAMPEONATO DE FUTEBOL MATA-MATA
+*/
+
+int main (){
 
     return 0;
 }
