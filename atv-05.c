@@ -11,33 +11,13 @@
     CAMPEONATO DE FUTEBOL MATA-MATA
 */
 
-void *showTeam(int i, char* times[8][2]){
-    printf("\n%s - %s\n", times[i][0], times[i][1]);
-    printf("_______________________\n");
-}
-void *showTeamNames(char *times[8][2]){
-    int i;
-    printf("=====================\n");
-    printf("        TIMES        \n");
-    printf("---------------------\n");
-    for(i = 0; i < 8; i++){
-        printf("%s - %s\n", times[i][0], times[i][1]);
-    }
-    printf("_____________________\n");
-}
+// Function Prototypes
+void *showTeam(int i, char* times[8][2]);
+void *showTeamNames(char *times[8][2]);
+void clear();
 
-void clear() {
-    #ifdef _WIN32
-	    system("cls");
-	#else
-        #if __linux__
-            system("clear");
-        #endif
-    #endif
-}
 
-int main()
-{
+int main(){
     int placar[8][2];
     int i, e, winnerAmount, draws;
     char *winners[8];
@@ -52,7 +32,6 @@ int main()
         {"Peru", "Colombia"}
     };
 
-    printf("=======================\n");
     for(i = 0; i < 8; i++){
         clear();
         showTeamNames(times);
@@ -89,3 +68,32 @@ int main()
 
     return 0;
 }
+
+// Functions
+
+void *showTeam(int i, char* times[8][2]){
+    printf("\n%s - %s\n", times[i][0], times[i][1]);
+    printf("_______________________\n");
+}
+
+void *showTeamNames(char *times[8][2]){
+    int i;
+    printf("=====================\n");
+    printf("        TIMES        \n");
+    printf("---------------------\n");
+    for(i = 0; i < 8; i++){
+        printf("%s - %s\n", times[i][0], times[i][1]);
+    }
+    printf("_____________________\n");
+}
+
+void clear(){
+    #ifdef _WIN32
+	    system("cls");
+	#else
+        #if __linux__
+            system("clear");
+        #endif
+    #endif
+}
+
