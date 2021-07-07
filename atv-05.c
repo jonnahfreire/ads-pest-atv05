@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <conio.h>
 
 /*
@@ -13,6 +14,26 @@
 void *showTeam(int i, char* times[8][2]){
     printf("\n%s - %s\n", times[i][0], times[i][1]);
     printf("_______________________\n");
+}
+void *showTeamNames(char *times[8][2]){
+    int i;
+    printf("=====================\n");
+    printf("        TIMES        \n");
+    printf("---------------------\n");
+    for(i = 0; i < 8; i++){
+        printf("%s - %s\n", times[i][0], times[i][1]);
+    }
+    printf("_____________________\n");
+}
+
+void clear() {
+    #ifdef _WIN32
+	    system("cls");
+	#else
+        #if __linux__
+            system("clear");
+        #endif
+    #endif
 }
 
 int main()
@@ -31,16 +52,12 @@ int main()
         {"Peru", "Colombia"}
     };
 
-
-
-    printf("======= TIMES =======\n");
-    for(i = 0; i < 8; i++){
-        printf("%s - %s\n", times[i][0], times[i][1]);
-    }
-
     printf("=======================\n");
     for(i = 0; i < 8; i++){
+        clear();
+        showTeamNames(times);
         showTeam(i, times);
+
         for(e = 0; e < 2; e++){
             printf("Digite o placar do time %d: ", e+1);
             scanf("%d", &placar[i][e]);
