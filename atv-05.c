@@ -14,7 +14,7 @@
 // Function Prototypes
 void *showTeam(int i, char* times[8][2], int etapa);
 void *showTeamNames(char *times[8][2]);
-void *iniciarCampeonato(char *times[8][2], int etapa);
+void *startChampionship(char *times[8][2], int etapa);
 void showFinalists(char *times[8][2], unsigned int placar[8][2]);
 void clear();
 
@@ -32,7 +32,7 @@ int main(){
     };
     int etapa = 1;
 
-    iniciarCampeonato(times, etapa);
+    startChampionship(times, etapa);
 
     printf("\n\nBye!!\n\n");
     return 0;
@@ -78,6 +78,7 @@ void clear(){
 }
 
 void showFinalists(char *times[8][2], unsigned int placar[8][2]){
+    #include <string.h>
     clear();
     char *campeao = (char*) calloc(10, sizeof(char));
     char *viceCampeao = (char*) calloc(10, sizeof(char));
@@ -102,9 +103,9 @@ void showFinalists(char *times[8][2], unsigned int placar[8][2]){
     printf("==========================\n");
 }
 
-void *iniciarCampeonato(char *times[8][2], int etapa) {
+void *startChampionship(char *times[8][2], int etapa) {
     unsigned int placar[8][2];
-    int i, e, winnerAmountk;
+    int i, e, winnerAmount;
     char *winners[8];
 
     for(i = 0; i < 8; i++){
@@ -178,6 +179,5 @@ void *iniciarCampeonato(char *times[8][2], int etapa) {
     }
 
     etapa += 1;
-    etapa < 5 && iniciarCampeonato(times, etapa);
-
+    etapa < 5 && startChampionship(times, etapa);
 }
