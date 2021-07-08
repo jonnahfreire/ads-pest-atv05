@@ -100,6 +100,8 @@ void showFinalists(char *times[8][2], unsigned int placar[8][2]){
     printf("*PLACAR: %d x %d\n", pCampeao, pViceCampeao);
 
     printf("==========================\n");
+    free(campeao);
+    free(viceCampeao);
 }
 
 void *startChampionship(char *times[8][2], int etapa) {
