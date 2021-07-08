@@ -78,7 +78,6 @@ void clear(){
 }
 
 void showFinalists(char *times[8][2], unsigned int placar[8][2]){
-    #include <string.h>
     clear();
     char *campeao = (char*) calloc(10, sizeof(char));
     char *viceCampeao = (char*) calloc(10, sizeof(char));
@@ -166,8 +165,7 @@ void *startChampionship(char *times[8][2], int etapa) {
                 times[i][e] = '\0';
             }
         }
-
-        int c = 0;
+        int c = 0;
         for(i = 0; i < winnerAmount; i+=2){
             for(e = 0; e < 2; e++)
                 times[c][e] = (e == 1)
