@@ -166,7 +166,8 @@ void *startChampionship(char *times[8][2], int etapa) {
                 times[i][e] = '\0';
             }
         }
-        int c = 0;
+
+        int c = 0;
         for(i = 0; i < winnerAmount; i+=2){
             for(e = 0; e < 2; e++)
                 times[c][e] = (e == 1)
