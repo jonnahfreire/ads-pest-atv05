@@ -30,18 +30,11 @@ int main(){
         {"Irlanda", "Chile"},
         {"Peru", "Colombia"}
     };
-    char newChampionship;
     int etapa = 1;
 
-    do {
-        iniciarCampeonato(times, etapa);
-
-        printf("Novo Campeonato? [S/N]: ");
-        scanf("%c", &newChampionship);
-    }while(newChampionship);
+    iniciarCampeonato(times, etapa);
 
     printf("\n\nBye!!\n\n");
-
     return 0;
 }
 
@@ -74,34 +67,52 @@ void *showTeamNames(char *times[8][2]){
     printf("_____________________\n");
 }
 
+void clear(){
+    #ifdef _WIN32
+	    system("cls");
+	#else
+        #if __linux__
+            system("clear");
+        #endif
+    #endif
+}
 
 void showFinalists(char *times[8][2], unsigned int placar[8][2]){
+    #include <string.h>
     clear();
+    char *campeao = (char*) calloc(10, sizeof(char));
+    char *viceCampeao = (char*) calloc(10, sizeof(char));
+    int pCampeao, pViceCampeao;
     printf("==========================\n");
-    printf("*CAMPEAO: %s\n*VICE-CAMPEAO: %s\n",
-           times[0][0], times[0][1]);
 
-    (placar[0][0] > placar[0][1]) &&
-    printf("*PLACAR: %d x %d\n",
-           placar[0][0], placar[0][1]);
+    if(placar[0][0] > placar[0][1]){
+        strcpy(campeao, times[0][0]);
+        strcpy(viceCampeao, times[0][1]);
+        pCampeao = placar[0][0];
+        pViceCampeao = placar[0][1];
 
-    (placar[0][0] < placar[0][1]) &&
-    printf("*PLACAR: %d x %d\n",
-           placar[0][1], placar[0][0]);
+    }else {
+        strcpy(campeao, times[0][1]);
+        strcpy(viceCampeao, times[0][1]);
+        pCampeao = placar[0][1];
+        pViceCampeao = placar[0][0];
+    }
+    printf("*CAMPEAO: %s\n*VICE-CAMPEAO: %s\n", campeao, viceCampeao);
+    printf("*PLACAR: %d x %d\n", pCampeao, pViceCampeao);
+
     printf("==========================\n");
 }
 
 void *iniciarCampeonato(char *times[8][2], int etapa) {
     unsigned int placar[8][2];
-    int i, e, c, a=0, winnerAmount;
+    int i, e, winnerAmountk;
     char *winners[8];
 
     for(i = 0; i < 8; i++){
         if((times[i][0] != '\0') && (times[i][1] != '\0')){
             clear();
             showTeamNames(times);
-            showTeam(a, times, etapa);
-            a++;
+            showTeam(i, times, etapa);
 
             for(e = 0; e < 2; e++){
                 if((times[i][0] != '\0') && (times[i][1] != '\0')) {
@@ -145,6 +156,9 @@ void *iniciarCampeonato(char *times[8][2], int etapa) {
         }
     }
 
+    if(etapa == 4) {
+        showFinalists(times, placar);
+    }
 
     if(etapa < 4){
         for(i = 0; i < winnerAmount; i++){
@@ -152,7 +166,7 @@ void *iniciarCampeonato(char *times[8][2], int etapa) {
                 times[i][e] = '\0';
             }
         }
-        c = 0;
+        int c = 0;
         for(i = 0; i < winnerAmount; i+=2){
             for(e = 0; e < 2; e++)
                 times[c][e] = (e == 1)
@@ -163,20 +177,7 @@ void *iniciarCampeonato(char *times[8][2], int etapa) {
         for(i = 0; (winners[i] != NULL); i++) winners[i] = '\0';
     }
 
-    if(etapa == 4) {
-        showFinalists(times, placar);
-    }
-
     etapa += 1;
     etapa < 5 && iniciarCampeonato(times, etapa);
-}
 
-void clear(){
-    #ifdef _WIN32
-	    system("cls");
-	#else
-        #if __linux__
-            system("clear");
-        #endif
-    #endif
 }
